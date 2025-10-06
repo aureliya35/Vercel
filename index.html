@@ -3,11 +3,49 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Auréliya — Sovereign AI System</title>
+  <title>Auréliya — Sovereign AI System (56)</title>
   <link rel="icon" href="data:,">
+  <style>
+    :root { --bg1:#432889; --bg2:#9e85d4; --card:rgba(255,255,255,.12); --cardBorder:rgba(255,255,255,.25);
+            --ink:#fff; --muted:rgba(255,255,255,.85); --chip:#fff; --chipInk:#222; }
+    *{box-sizing:border-box}
+    html,body{margin:0;height:100%;background:linear-gradient(135deg,var(--bg1),var(--bg2));color:var(--ink);
+      font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Inter,Roboto,Arial}
+    a{color:#fff}
+    .wrap{min-height:100vh;display:flex;flex-direction:column}
+    .nav{position:sticky;top:0;z-index:10;backdrop-filter:blur(8px);background:rgba(0,0,0,.25);
+      padding:10px 12px;display:flex;gap:14px;align-items:center}
+    .nav button{background:transparent;border:0;color:#fff;font-weight:600;padding:8px 10px;border-radius:10px;cursor:pointer}
+    .nav button.active{background:rgba(255,255,255,.18)}
+    .nav input{margin-left:auto;padding:10px 12px;border-radius:10px;border:0;min-width:220px}
+    main{width:100%;max-width:1120px;margin:0 auto;padding:24px}
+    .halo{width:160px;height:160px;border:4px solid gold;border-radius:50%;box-shadow:0 0 20px gold;margin:18px auto}
+    .home{display:flex;flex-direction:column;align-items:center;gap:8px}
+    .card{background:var(--card);border:1px solid var(--cardBorder);border-radius:16px;padding:18px 18px 22px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+    h1,h2{margin:0 0 10px}
+    pre{background:rgba(0,0,0,.35);color:#fff;padding:14px;border-radius:12px;overflow:auto}
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+    .tile{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);border-radius:14px;padding:12px}
+    .tile h4{margin:0 0 6px}
+    .row{display:flex;gap:10px;flex-wrap:wrap}
+    .chip{background:var(--chip);color:var(--chipInk);border-radius:999px;font-weight:600;padding:7px 12px;border:0;cursor:pointer}
+    .muted{opacity:.9}
+  </style>
 </head>
 <body>
-  <div id="app"></div>
-  <script type="module" src="registry.js"></script>
+<div class="wrap">
+  <nav id="hdr" class="nav">
+    <button data-goto="#/home"  id="nav-home">🏠 Home</button>
+    <button data-goto="#/modules" id="nav-mods">🧩 Modules</button>
+    <button data-goto="#/module/01-trustos" id="nav-trust">🔐 Trust</button>
+    <button data-goto="#/settings" id="nav-settings">⚙️ Settings</button>
+    <button data-goto="#/files" id="nav-files">📁 Files</button>
+    <input id="q" placeholder="Search modules…"/>
+  </nav>
+  <main id="main"><p class="muted">Loading…</p></main>
+</div>
+
+<!-- Load ALL app logic (56 modules) -->
+<script type="module" src="./registry.js"></script>
 </body>
 </html>
