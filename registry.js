@@ -1,59 +1,4 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Auréliya — Sovereign AI System (56)</title>
-  <link rel="icon" href="data:,">
-  <style>
-    :root {
-      --bg1: #432889; --bg2:#9e85d4;
-      --card: rgba(255,255,255,.12);
-      --cardBorder: rgba(255,255,255,.25);
-      --ink:#fff; --muted: rgba(255,255,255,.85);
-      --chip:#fff; --chipInk:#222;
-    }
-    *{box-sizing:border-box}
-    html,body{margin:0;height:100%;background:linear-gradient(135deg,var(--bg1),var(--bg2));color:var(--ink);font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Inter,Roboto,Arial}
-    a{color:#fff}
-    .wrap{min-height:100vh;display:flex;flex-direction:column}
-    .nav{position:sticky;top:0;z-index:10;backdrop-filter:blur(8px);background:rgba(0,0,0,.25);padding:10px 12px;display:flex;gap:14px;align-items:center}
-    .nav button{background:transparent;border:0;color:#fff;font-weight:600;padding:8px 10px;border-radius:10px;cursor:pointer}
-    .nav button.active{background:rgba(255,255,255,.18)}
-    .nav input{margin-left:auto;padding:10px 12px;border-radius:10px;border:0;min-width:220px}
-    main{width:100%;max-width:1120px;margin:0 auto;padding:24px}
-    .halo{width:160px;height:160px;border:4px solid gold;border-radius:50%;box-shadow:0 0 20px gold;margin:18px auto}
-    .home{display:flex;flex-direction:column;align-items:center;gap:8px}
-    .card{background:var(--card);border:1px solid var(--cardBorder);border-radius:16px;padding:18px 18px 22px 18px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
-    h1,h2{margin:0 0 10px 0}
-    pre{background:rgba(0,0,0,.35);color:#fff;padding:14px;border-radius:12px;overflow:auto}
-    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
-    .tile{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);border-radius:14px;padding:12px}
-    .tile h4{margin:0 0 6px 0}
-    .row{display:flex;gap:10px;flex-wrap:wrap}
-    .chip{background:var(--chip);color:var(--chipInk);border-radius:999px;font-weight:600;padding:7px 12px;border:0;cursor:pointer}
-    .muted{opacity:.9}
-    .sr{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden}
-  </style>
-</head>
-<body>
-<div class="wrap">
-  <nav id="hdr" class="nav">
-    <button data-goto="#/home"  id="nav-home">🏠 Home</button>
-    <button data-goto="#/modules" id="nav-mods">🧩 Modules</button>
-    <button data-goto="#/module/01-trustos" id="nav-trust">🔐 Trust</button>
-    <button data-goto="#/settings" id="nav-settings">⚙️ Settings</button>
-    <button data-goto="#/files" id="nav-files">📁 Files</button>
-    <input id="q" placeholder="Search modules…"/>
-  </nav>
-
-  <main id="main">
-    <p class="muted">Loading…</p>
-  </main>
-</div>
-
-<script type="module">
-/* ---------- show fatal errors right on the page (handy on mobile) ---------- */
+/* ---------- error surface (so crashes show on-screen, esp. on iPhone) ----- */
 window.addEventListener('error', e => {
   const pre=document.createElement('pre'); pre.textContent='Error: '+e.message;
   document.getElementById('main').prepend(pre);
@@ -106,14 +51,14 @@ Registry.add({
   }
 });
 
-// 02 SovereignWealth — uses /api/ping as health
+// 02 SovereignWealth — /api/ping
 Registry.add({
   id:"02-sovereignwealth", name:"SovereignWealth",
   async render(mount){
     mount.innerHTML = `
       <div class="card">
         <h2>💰 SovereignWealth</h2>
-        <p class="muted">Connectivity test via <code>/api/ping</code>. Wire income/grants here.</p>
+        <p class="muted">Connectivity test via <code>/api/ping</code>.</p>
         <div class="row">
           <button class="chip" id="btnPing">Ping</button>
           ${backBtn()}
@@ -127,7 +72,7 @@ Registry.add({
   }
 });
 
-// 03 MirrorMe — sends JSON to /api/echo
+// 03 MirrorMe — POST JSON to /api/echo
 Registry.add({
   id:"03-mirrorme", name:"MirrorMe",
   async render(mount){
@@ -153,7 +98,7 @@ Registry.add({
   }
 });
 
-// 04 Boardroom Access — proxies to /api/openai with {prompt}
+// 04 Boardroom Access — /api/openai {prompt}
 Registry.add({
   id:"04-boardroomaccess", name:"Boardroom Access",
   async render(mount){
@@ -179,7 +124,7 @@ Registry.add({
   }
 });
 
-// 05 Auréliya Air — placeholder (wire flight APIs later)
+// 05 Auréliya Air — template
 Registry.add({
   id:"05-aureliyaair", name:"Auréliya Air",
   render(mount){
@@ -192,7 +137,7 @@ Registry.add({
   }
 });
 
-// 06 Quantum Income Router — template with quick demo
+// 06 Quantum Income Router — demo
 Registry.add({
   id:"06-quantumincomerouter", name:"Quantum Income Router",
   render(mount){
@@ -244,7 +189,7 @@ const genericModule = (id, name) => ({
   }
 });
 
-// names for 08–56 (you can rename anytime)
+// names for 08–56 (rename later if you like)
 const names = [
   "Module 08","Module 09","Module 10","Module 11","Module 12","Module 13","Module 14",
   "Module 15","Module 16","Module 17","Module 18","Module 19","Module 20","Module 21",
@@ -254,7 +199,6 @@ const names = [
   "Module 43","Module 44","Module 45","Module 46","Module 47","Module 48","Module 49",
   "Module 50","Module 51","Module 52","Module 53","Module 54","Module 55","Module 56"
 ];
-// register 08–56
 for(let i=0;i<names.length;i++){
   const n=i+8; const id=String(n).padStart(2,'0')+'-module'+String(n).padStart(2,'0');
   Registry.add(genericModule(id, names[i]));
@@ -281,14 +225,11 @@ function renderHome(){
 }
 
 function renderModules(){
-  const items = Registry.list().map(m=>{
-    return `<div class="tile"><h4>${m.name}</h4><a class="chip" href="#/module/${m.id}">Open</a></div>`;
-  }).join('');
-  el('main').innerHTML = `
-    <div class="card">
-      <h2>🧩 Modules (${Registry.list().length})</h2>
-      <div class="grid" style="margin-top:12px">${items}</div>
-    </div>`;
+  const items = Registry.list().map(m=>(
+    `<div class="tile"><h4>${m.name}</h4><a class="chip" href="#/module/${m.id}">Open</a></div>`
+  )).join('');
+  el('main').innerHTML = `<div class="card"><h2>🧩 Modules (${Registry.list().length})</h2>
+    <div class="grid" style="margin-top:12px">${items}</div></div>`;
 }
 
 async function renderModule(id){
@@ -302,30 +243,20 @@ async function renderModule(id){
 }
 
 function renderSettings(){
-  el('main').innerHTML = `
-    <div class="card">
-      <h2>⚙️ Settings</h2>
-      <p class="muted">Add environment & feature switches here.</p>
-      ${backBtn()}
-    </div>`;
+  el('main').innerHTML = `<div class="card"><h2>⚙️ Settings</h2><p class="muted">Add environment & feature switches here.</p>${backBtn()}</div>`;
 }
 
 function renderFiles(){
-  el('main').innerHTML = `
-    <div class="card">
-      <h2>📁 Files</h2>
-      <p class="muted">Connect storage and list artifacts here.</p>
-      ${backBtn()}
-    </div>`;
+  el('main').innerHTML = `<div class="card"><h2>📁 Files</h2><p class="muted">Connect storage and list artifacts here.</p>${backBtn()}</div>`;
 }
 
 /* --------------------------------- ROUTER --------------------------------- */
 function route(){
   const h = location.hash || '#/home';
   document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active'));
-  if(h.startsWith('#/home'))     el('nav-home').classList.add('active');
-  else if(h.startsWith('#/modules'))  el('nav-mods').classList.add('active');
-  else if(h.startsWith('#/module/'))  el('nav-trust').classList.add('active');
+  if(h.startsWith('#/home'))        el('nav-home').classList.add('active');
+  else if(h.startsWith('#/modules')) el('nav-mods').classList.add('active');
+  else if(h.startsWith('#/module/')) el('nav-trust').classList.add('active');
 
   if(h === '#/home'){ renderHome(); }
   else if(h === '#/modules'){ renderModules(); }
@@ -341,13 +272,10 @@ window.addEventListener('load', route);
 document.querySelectorAll('.nav [data-goto]').forEach(b=>{
   b.onclick = ()=> location.hash = b.getAttribute('data-goto');
 });
-el('q').addEventListener('keydown', e=>{
+document.getElementById('q').addEventListener('keydown', e=>{
   if(e.key!=='Enter') return;
   const q = e.target.value.trim().toLowerCase();
   if(!q) return;
   const hit = Registry.list().find(m => (m.name||m.id).toLowerCase().includes(q));
   if(hit) location.hash = '#/module/'+hit.id;
 });
-</script>
-</body>
-</html>
